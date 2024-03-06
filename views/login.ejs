@@ -1,0 +1,43 @@
+<html lang="en">
+    <head>
+        <%- include('./layout/head') %>
+        <link rel="stylesheet" href="assets/css/auth.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="color"></div>
+            <div class="color"></div>
+            <div class="color"></div>
+            <form class="form" action="/login" method="post">
+                <% for(const key in flash){ %>
+                    <p class="<% if(flash.success){ %>success <% } else{%>errors<% } %>">
+                        <%= flash[key] %>
+                    </p>
+                <% } %>
+                <h2 class="form__header">Login</h2>
+                <input
+                    class="form__txt"
+                    type="email"
+                    placeholder="Your E-Mail"
+                    name="email"
+                    required
+                    id=""
+                />
+                <div class="password"></div>
+                <input
+                    class="form__txt"
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    required
+                    id=""
+                />
+                <button class="form__btn" type="submit">Login</button>
+                <a class="form__link" href="/signup"
+                    >Don't have an account? Signup here</a
+                >
+            </form>
+            <%- include('./layout/footer') %>
+        </div>
+    </body>
+</html>

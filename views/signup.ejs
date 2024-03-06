@@ -1,0 +1,59 @@
+<html lang="en">
+    <head>
+        <%- include('./layout/head') %>
+        <link rel="stylesheet" href="assets/css/auth.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="color"></div>
+            <div class="color"></div>
+            <div class="color"></div>
+            <form class="form" action="/signup" method="post">
+                <% for(key in flash){ %>
+                    <p class="errors">
+                        <%= flash[key] %>
+                    </p>
+                <% } %>
+                <% errors.forEach(error => { %>
+                    <p class="errors">
+                        <% if(error.path === 'name'){ %>
+                            Please Enter Your Name
+                        <% } else if(error.path === 'email'){ %>
+                            Please Enter Your Email Correctly
+                        <% } else if(error.path === 'password'){ %>
+                            Password Must Be At Least 8 Characters
+                        <% }%>
+                    </p>
+                <% }) %>
+                <h2 class="form__header">Create Account</h2>
+                <input
+                    class="form__txt <% errors.forEach(error =>{ if(error.path === 'name'){ %>error<% }}) %>"
+                    type="text"
+                    placeholder="Your Name"
+                    name="name"
+                    required
+                />
+                <input
+                    class="form__txt <% errors.forEach(error =>{ if(error.path === 'email'){ %>error<% }}) %>"
+                    type="email"
+                    placeholder="Your E-Mail"
+                    name="email"
+                    required
+                />
+                <div class="password"></div>
+                <input
+                    class="form__txt <% errors.forEach(error =>{ if(error.path === 'password'){ %>error<% }}) %>"
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    required
+                />
+                <button class="form__btn" type="submit">Sign Up</button>
+                <a class="form__link" href="/login"
+                    >Already have an account? Login here</a
+                >
+            </form>
+            <%- include('./layout/footer') %>
+        </div>
+    </body>
+</html>
